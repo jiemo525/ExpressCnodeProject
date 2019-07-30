@@ -1,0 +1,53 @@
+<% include header.ejs %>
+<% include navbar.ejs %>
+<div class='main'>
+  <div class='topic-list'>
+    <div class='header'>
+      <div class='header-tab'>
+        <a href='/'>全部</a>
+      </div>
+      <div class='header-tab'>
+        精华
+      </div>
+      <div class='header-tab'>
+        分享
+      </div>
+      <div class='header-tab'>
+        问答
+      </div>
+      <div class='header-tab'>
+        招聘
+      </div>
+      <div class='header-tab'>
+        客户端测试
+      </div>
+    </div>
+
+    <% topicListData.forEach(function(item){ %>
+    <div key={item.id} class='cell'>
+      <div class='user-avatar'>
+        <a href='/user/<%= item.author.loginname %>'>
+          <img src=<%= item.author.avatar_url %> />
+        </a>
+      </div>
+      <div class='reply-count'>
+        <%= item.reply_count %>/<%= item.visit_count %>
+      </div>
+      <div class='topic_title_wrapper'>
+        <span class='topiclist-tab'>
+          <%= (item.top? '置顶': getTab(item.tab)) %>
+        </span>
+        <a href='/topic/<%= item.id %>' class='topic-title'><%= item.title %></a>
+      </div>
+      <div class='last-time'>
+        <%= dateFromNow(item.last_reply_at) %>
+      </div>
+    </div>
+    <% }); %>
+    <div class='pagination'>
+    </div>
+  </div>
+  <% include sidebar.ejs %>
+</div>
+
+<% include footer.ejs %>

@@ -1,0 +1,55 @@
+<% include header.ejs %>
+<% include navbar.ejs %>
+<div class='create-topic'>
+  <div class='create-topic-content'>
+    <div class='create-topic-breadcrumb'><a href='/'>主页 </a> / 发布话题</div>
+    <form method="post" action="/create">
+      <div class='create-topic-form-tab'>
+        <span>选择版块: </span>
+        <select name='tab'>
+          <% for(index in tabs) { %>
+          <option value='<%= index %>'>
+            <%= tabs[index] %>
+          </option>
+          <% }  %>
+        </select>
+      </div>
+      <div class='create-topic-form-title'>
+        <input name='title' placeholder="请输入标题" value='' />
+      </div>
+      <div class='create-topic-form-content'>
+        <textarea name="content" data-provide="markdown" rows="25"></textarea>
+      </div>
+      <div class='create-topic-form-btn'>
+        <button type="submit" class="button-default" id="submitBtn">提交</button>
+      </div>
+    </form>
+  </div>
+  <div class='create-topic-sidebar'>
+    <div class='create-topic-sidebar-infos'>
+      <div class='create-topic-sidebar-infos-header'>
+        Markdown 语法参考
+      </div>
+      <div class='create-topic-sidebar-infos-content'>
+        <p>### 单行的标题</p>
+        <p>**粗体**</p>
+        <p>`console.log('行内代码')`</p>
+        <p>```js\n code \n``` 标记代码块</p>
+        <p>[内容](链接)</p>
+        <p>![文字说明](图片链接)</p>
+        <p>Markdown 文档</p>
+      </div>
+    </div>
+    <div class='create-topic-sidebar-infos'>
+      <div class='create-topic-sidebar-infos-header'>
+        话题发布指南
+      </div>
+      <div class='create-topic-sidebar-infos-content'>
+        <p>尽量把话题要点浓缩到标题里</p>
+        <p>代码含义和报错可在 SegmentFault 提问</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include footer.ejs %>

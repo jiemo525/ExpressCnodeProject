@@ -1,0 +1,36 @@
+<% include header.ejs %>
+
+<div class='topics'>
+  <div class='topic-detail'>
+      <!-- <a href='/'><div>首页/</div></a> -->
+      <div class='topic-detail-header'>
+        <div>
+          <span class='topiclist-tab'>
+            <%= topicData.top ? '置顶' : getTab(topicData.tab) %>
+          </span>
+          <div class="topic-detail-title">
+            <%= topicData.title ? topicData.title : '' %>
+          </div>
+        </div>
+        <div class='topic-detail-changes'>
+          <span>发布于 <%= dateFromNow(topicData.create_at) %></span>
+          <span>作者 <%= topicData.author ? topicData.author.loginname : '' %></span>
+          <span><%= topicData.visit_count ? topicData.visit_count : '' %> 次浏览</span>
+          <span>来自 <%= topicData.tab ? '' : '' %></span>
+        </div>
+      </div>
+       <!-- 话题详情内容  -->
+      <div class='topic-detail-content'>
+        <%- topicData.content %>
+      </div>
+      <!-- 评论列表  -->
+      <div class='topic-detail-reply'>
+        <div class='topic-detail-reply-header'>
+           <%= topicData.replies? topicData.replies.length: '' %> 回复
+        </div>
+        
+      </div>
+    </div>
+</div>
+
+<% include footer.ejs %>

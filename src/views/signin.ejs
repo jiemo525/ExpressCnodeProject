@@ -1,0 +1,22 @@
+<% include header.ejs %>
+
+<div class='signin'>
+  <div class='signin-form'>
+    <div>注册</div>
+    <form method="post" action="/signin">
+      <div class='singnin-loginname'>
+        <span>用户名: </span>
+        <input name='loginname' value=''/>
+      </div>
+      <div class='singnin-password'>
+          <span>密码: </span>
+          <input name='password' value='' type='password'/>
+      </div>
+      <div class='signin-btn'>
+        <button type="submit" class="button-default" id="submitBtn">提交</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<% include footer.ejs %>
