@@ -10,8 +10,13 @@
         <a href='/'>API</a>
         <a href='https://cnodejs.org/about'>关于</a>
         <a href='/'>设置</a>
-        <!-- <div><a href='/signout'>退出</a></div> -->
-        <a href='/signin'>登录</a>
+        <% if(userData) { %>
+          <div><a href='/signout'>退出</a></div>
+          <% } else { %>
+          <a href='/signin'>登录</a>
+        <% } %>
+        
+        
     </div>
    
   </div>

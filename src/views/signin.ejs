@@ -1,8 +1,9 @@
 <% include header.ejs %>
-
+<% include navbar.ejs %>
+<!-- 登录页面 -->
 <div class='signin'>
   <div class='signin-form'>
-    <div>注册</div>
+    <div class='signin-breadcrumb'><a href='/'>主页 </a> / 登录</div>
     <form method="post" action="/signin">
       <div class='singnin-loginname'>
         <span>用户名: </span>
@@ -13,9 +14,17 @@
           <input name='password' value='' type='password'/>
       </div>
       <div class='signin-btn'>
-        <button type="submit" class="button-default" id="submitBtn">提交</button>
+        <button type="submit" class="signin-submit-btn" id="submitBtn">登录</button>
+        <a href='https://github.com/login/oauth/authorize?client_id=ed0538206ea0b560ae1e&redirect_url==http://192.168.3.67:3000/github/auth'>
+          <div class='github-btn'>通过 github 登录</div>
+        </a>
+        <span class='signin-forget-password'>忘记密码了?</span>
       </div>
     </form>
+   
+  </div>
+  <div class='signin-info'>
+
   </div>
 </div>
 

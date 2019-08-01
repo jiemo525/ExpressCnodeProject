@@ -206,6 +206,30 @@ body {
   background-color: #fff;
 }
 
+.sidebar-user {
+  margin-bottom: 10px;
+}
+
+.sidebar-user-title {
+  color: #51585c;
+  border-radius: 3px 3px 0 0;
+  padding: 10px;
+  background-color: #f6f6f6;
+}
+
+.sidebar-user-info {}
+
+.sidebar-user-info img {
+  width: 48px;
+  height: 48px;
+  border-radius: 3px;
+}
+
+.sidebar-user-name {
+  font-size: 16px;
+  color: #778087;
+}
+
 .create-topic-btn {
   display: inline-block;
   border-radius: 3px;
@@ -219,20 +243,41 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
-  background-color: #f9f9f9;
+  width: 1200px;
+  margin: 0 auto;
+  /* background-color: #f9f9f9; */
 
 }
 
 .signin-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 500px;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  width: calc(100% - 305px);
   min-height: 400px;
-  padding: 20px;
+  /* padding: 20px; */
   background-color: #fff;
+}
+.signin-form form {
+  text-align: center;
+}
+
+.signin-info {
+  width: 295px;
+  margin-left: 10px;
+}
+
+.signin-breadcrumb {
+  padding: 10px;
+  background-color: #f6f6f6;
+  border-radius: 3px 3px 0 0;
+  color: #999;
+  margin-bottom: 50px;
+}
+
+.signin-breadcrumb a {
+  color: #80bd01;
 }
 
 .singnin-loginname,
@@ -247,9 +292,43 @@ body {
   text-align: right;
 }
 
-.signin-btn {
-  text-align: center;
+.signin-submit-btn {
+  border: none;
+  border-radius: 3px;
+  background-color: #08c;
+  padding: 3px 10px;
+  margin: 0;
+  font-size: 14px;
+  transition: all .2s ease-in-out;
+  letter-spacing: 2px;
+  box-shadow: none;
+  line-height: 2em;
+  vertical-align: middle;
+  color: #fff;
 }
+
+.github-btn {
+  display: inline-block;
+  padding: 3px 10px;
+  border: none;
+  margin: 0;
+  font-size: 14px;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+  letter-spacing: 2px;
+  box-shadow: none;
+  border-radius: 3px;
+  line-height: 2em;
+  vertical-align: middle;
+  color: #fff;
+  background-color: #5bc0de;
+}
+
+.signin-forget-password {
+  color: #778087;
+  margin-left: 10px;
+}
+
 
 /* 头部选择条 */
 

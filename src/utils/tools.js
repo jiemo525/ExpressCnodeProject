@@ -1,3 +1,9 @@
+/**
+ * @description 公共工具方法
+ * @author jiemo525
+ * @date 20190731
+ */
+
 const moment = require('moment');
 
 moment.defineLocale('zh-cn', {
@@ -27,6 +33,7 @@ const tabs = {
   'ask': '问答',
   'job': '招聘'
 }
+
 module.exports = {
   dateFromNow: (value) => {
     const str = moment(value, 'YYYY-MM-DD').fromNow();
