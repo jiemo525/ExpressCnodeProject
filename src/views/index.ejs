@@ -31,7 +31,9 @@
         </a>
       </div>
       <div class='reply-count'>
-        <%= item.reply_count %>/<%= item.visit_count %>
+        <% if(item.reply_count && item.reply_count > 0){ %>
+          <%= item.reply_count %>/<%= item.visit_count %>
+        <% } %>
       </div>
       <div class='topic_title_wrapper'>
         <span class='topiclist-tab'>
@@ -40,14 +42,15 @@
         <a href='/topic/<%= item.id %>' class='topic-title'><%= item.title %></a>
       </div>
       <div class='last-time'>
-        <%= dateFromNow(item.last_reply_at) %>
+        <!-- <%= dateFromNow(item.last_reply_at) %> -->
+        <%= dateFromNow(item.create_at) %>
       </div>
     </div>
     <% }); %>
     <div class='pagination'>
     </div>
   </div>
-  <!-- <% include sidebar.ejs %> -->
+  <% include sidebar.ejs %>
 </div>
 
 <% include footer.ejs %>

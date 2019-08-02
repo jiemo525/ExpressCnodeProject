@@ -1,36 +1,72 @@
 <% include header.ejs %>
-
+<% include navbar.ejs %>
 <div class='topics'>
   <div class='topic-detail'>
-      <!-- <a href='/'><div>首页/</div></a> -->
-      <div class='topic-detail-header'>
-        <div>
-          <span class='topiclist-tab'>
-            <%= topicData.top ? '置顶' : getTab(topicData.tab) %>
-          </span>
-          <div class="topic-detail-title">
-            <%= topicData.title ? topicData.title : '' %>
-          </div>
-        </div>
-        <div class='topic-detail-changes'>
-          <span>发布于 <%= dateFromNow(topicData.create_at) %></span>
-          <span>作者 <%= topicData.author ? topicData.author.loginname : '' %></span>
-          <span><%= topicData.visit_count ? topicData.visit_count : '' %> 次浏览</span>
-          <span>来自 <%= topicData.tab ? '' : '' %></span>
+    <!-- <a href='/'><div>首页/</div></a> -->
+    <div class='topic-detail-header'>
+      <div>
+        <% if(topicData.top) {%>
+        <span class='topiclist-tab'>
+          置顶
+        </span>
+        <% } %>
+        <div class="topic-detail-title">
+          <%= topicData.title ? topicData.title : '' %>
         </div>
       </div>
-       <!-- 话题详情内容  -->
-      <div class='topic-detail-content'>
-        <%- topicData.content %>
-      </div>
-      <!-- 评论列表  -->
-      <div class='topic-detail-reply'>
-        <div class='topic-detail-reply-header'>
-           <%= topicData.replies? topicData.replies.length: '' %> 回复
-        </div>
-        
+      <div class='topic-detail-changes'>
+        <span>发布于 <%= dateFromNow(topicData.create_at) %></span>
+        <span>作者 <%= topicData.author ? topicData.author.loginname : '' %></span>
+        <span><%= topicData.visit_count ? topicData.visit_count : '' %> 次浏览</span>
+        <span>来自 <%= topicData.tab ? getTab(topicData.tab) : '远方' %></span>
       </div>
     </div>
+    <!-- 话题详情内容  -->
+    <div class='topic-detail-content'>
+      <%- topicData.content %>
+    </div>
+    <!-- 评论列表  -->
+    <% if(replies && replies.length > 0) {%>
+    <div class='topic-detail-reply'>
+      <div class='topic-detail-reply-header'>
+        <%= replies.length %> 回复
+      </div>
+      <% replies.forEach((item) => { %>
+        <div class='topic-detail-reply-item'>
+          <%= dateFromNow(item.create_at )%>
+          <%= item.content %>
+        </div>
+      <% }) %>
+    </div>
+    <% } %>
+    <!-- 添加回复 -->
+    <div class='topic-add-reply'>
+      <div class='topic-add-reply-title'>添加回复</div>
+      <form method="post" action='/addReply/<%= id %>'>
+        <div class='topic-add-reply-form-content'>
+          <textarea name="content" data-provide="markdown" rows="10"></textarea>
+        </div>
+        <div class='topic-add-reply-form-btn'>
+          <button type="submit" class="button-default" id="submitBtn">回复</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+  <div class='sidebar'>
+    <div class='sidebar-user'>
+      <div class='sidebar-user-title'>个人信息</div>
+      <div class='inner'>
+        <div class='sidebar-user-info'>
+          <img src='<%= userInfo.avatar_url %>' />
+          <span class='sidebar-user-name'><%= userInfo.login %></span>
+        </div>
+        <div>积分：0</div>
+        <div>“ 这家伙很懒，什么个性签名都没有留下。 ”</div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <% include footer.ejs %>

@@ -1,7 +1,15 @@
 <div class='sidebar'>
   <div class='inner'>
+    <% if(userInfo) { %>
     <a href='/create'>
       <div class='create-topic-btn'>发布话题</div>
     </a>
+    <% } else { %>
+    <a
+      href='https://github.com/login/oauth/authorize?client_id=ed0538206ea0b560ae1e&redirect_url==http://192.168.3.67:3000/github/auth'>
+      <div class='github-btn'>通过 github 登录</div>
+    </a>
+    <% } %>
+
   </div>
 </div>

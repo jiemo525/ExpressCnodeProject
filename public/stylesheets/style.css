@@ -103,10 +103,19 @@ body {
   background-color: #f4fcf0;
 }
 
-.topic-detail {
+.topics {
+  display: flex;
+  flex-direction: row;
   width: 1200px;
   margin: 0 auto;
-  padding: 20px 0;
+
+}
+
+.topic-detail {
+
+  width: calc(100% - 305px);
+  /* margin: 0 auto;
+  padding: 20px 0; */
 }
 
 .topic-detail-header {
@@ -115,11 +124,64 @@ body {
   background-color: #fff;
 }
 
-.topic-detail-changes {}
+.topic-detail-changes {
+  margin-top: 10px;
+}
 
 .topic-detail-changes span:before {
   content: "•";
 }
+
+.topic-detail-reply-item {
+  padding: 10px;
+  background: #fff;
+  border-top: 1px solid #f0f0f0;
+}
+
+.topic-add-reply {
+  margin-top: 20px;
+  background-color: #fff;
+}
+
+.topic-add-reply-title {
+  padding: 10px;
+  background-color: #f6f6f6;
+  border-radius: 3px 3px 0 0;
+}
+
+.topic-add-reply-form-content .md-editor {
+  border: 0;
+}
+
+.topic-add-reply-form-content .md-editor.active {
+  box-shadow: none;
+}
+
+.topic-add-reply-form-content textarea {
+  background-color: #fff;
+  border: 0;
+}
+
+.topic-add-reply-form-btn {
+  padding: 20px;
+}
+
+.topic-add-reply-form-btn button {
+  border: none;
+  display: inline-block;
+  padding: 3px 10px;
+  margin: 0;
+  font-size: 14px;
+  transition: all .2s ease-in-out;
+  letter-spacing: 2px;
+  box-shadow: none;
+  line-height: 2em;
+  vertical-align: middle;
+  color: #fff;
+  border-radius: 3px;
+  background-color: #08c;
+}
+
 
 .topiclist-tab {
   background: #80bd01;
@@ -129,6 +191,11 @@ body {
   font-size: 12px;
   margin: 0 8px;
   vertical-align: bottom;
+}
+
+.topic-detail .topiclist-tab {
+  position: relative;
+  top: -7px;
 }
 
 .topic-detail-title {
@@ -259,6 +326,7 @@ body {
   /* padding: 20px; */
   background-color: #fff;
 }
+
 .signin-form form {
   text-align: center;
 }

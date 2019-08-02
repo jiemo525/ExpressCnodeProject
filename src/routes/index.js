@@ -5,6 +5,7 @@ const axios = require('axios');
 const sessionStorage = require('node-sessionStorage');
 const Topic = require('../controller/topics');
 const User = require('../controller/user');
+const Reply = require('../controller/reply');
 const { dateFromNow, getTab, tabs } = require('../utils/tools');
 
 /* GET home page. */
@@ -20,7 +21,8 @@ router.get('/', function (req, res, next) {
         Authorization: `token ${token}`
       }
     }).then((response) => {
-      let userData = response.data;
+      let userInfo = response.data;
+      sessionStorage.setItem('userInfo', userInfo);
       Topic.list().then((data) => {
         res.render('signup', {
           title: 'CNode',
@@ -28,7 +30,7 @@ router.get('/', function (req, res, next) {
           dateFromNow,
           getTab,
           signin: true,
-          userData
+          userInfo
         });
       })
     })
@@ -40,7 +42,7 @@ router.get('/', function (req, res, next) {
         dateFromNow: dateFromNow,
         getTab: getTab,
         signin: false,
-        userData: false
+        userInfo: false
       });
     })
   }
@@ -63,7 +65,7 @@ router.post('/', function (req, res, next) {
 router.get('/signin', function (req, res, next) {
   res.render('signin', {
     title: '登录',
-    userData: false
+    userInfo: false
   })
 })
 
@@ -107,33 +109,57 @@ router.get('/topic/:id', function (req, res, next) {
     if (data.content) {
       data.content = marked(data.content);
     }
-
-    res.render('topic', {
-      title: '详情',
-      topicData: data,
-      dateFromNow: dateFromNow,
-      getTab: getTab
+    Reply.getReplyByTopicId(id).then((replies) => {
+      res.render('topic', {
+        title: '详情',
+        topicData: data,
+        dateFromNow: dateFromNow,
+        getTab: getTab,
+        userInfo: {
+          login: data.author.loginname,
+          avatar_url: data.author.avatar_url
+        },
+        id,
+        replies
+      })
     })
   });
 })
 
+// 发布评论
+router.post('/addReply/:id', function (req, res, next) {
+  const userInfo = sessionStorage.getItem('userInfo');
+  let id = req.params.id;
+  let obj = {};
+  obj.content = req.body.content;
+  obj.topic_id = id;
+  obj.author_id = userInfo.id;
+  Reply.add(obj).then((data) => {
+    res.redirect(`/topic/${id}`);
+  })
+  
+})
+
 // 新建话题
 router.get('/create', function (req, res, next) {
+  const userInfo = sessionStorage.getItem('userInfo');
   res.render('createTopic', {
     title: '新建话题',
-    tabs: tabs
+    tabs: tabs,
+    userInfo
   })
 })
 
 // 提交新建话题
 router.post('/create', function (req, res, next) {
+  const userInfo = sessionStorage.getItem('userInfo');
   let obj = {};
   obj.tab = req.body.tab;
   obj.content = req.body.content;
   obj.title = req.body.title;
   obj.author = {
-    loginname: "atian25",
-    avatar_url: "https://avatars2.githubusercontent.com/u/227713?v=4&s=120"
+    loginname: userInfo.login,
+    avatar_url: userInfo.avatar_url
   }
   Topic.add(obj).then((data) => {
     res.redirect('/topic/' + data._id)

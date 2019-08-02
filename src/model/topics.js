@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 mongoose.connect(config.mongodb, { useNewUrlParser: true }); 
 
 let topicSchema = new Schema({
-  author_id: '',
+  author_id: String,
   tab: String,
   content: String,
   title: String,
